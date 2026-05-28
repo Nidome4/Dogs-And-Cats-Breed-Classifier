@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxford-IIIT Pet Classifier</title>
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
+</head>
+<body>
+<main class="container">
+    <section class="card">
+        <header class="header">
+            <h1>Clasificador de Mascotas</h1>
+            <p>Oxford-IIIT Pet Dataset · Inferencia</p>
+        </header>
+
+        <label class="label" for="model-select">Modelo</label>
+        <select id="model-select" class="input">
+            <option value="resnet50">ResNet50</option>
+            <option value="efficientnet_b0">EfficientNet-B0</option>
+            <option value="mobilenetv3">MobileNetV3</option>
+        </select>
+
+        <div class="tab-selector" role="tablist" aria-label="Método de entrada">
+            <button class="tab active" id="tab-file" type="button">Subir archivo</button>
+            <button class="tab" id="tab-url" type="button">URL</button>
+        </div>
+
+        <div id="content-file" class="tab-content active">
+            <label class="upload" for="file-input">
+                <span>Selecciona o arrastra una imagen</span>
+                <small>JPG, JPEG, PNG, WEBP</small>
+            </label>
+            <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp" hidden>
+        </div>
+
+        <div id="content-url" class="tab-content">
+            <input type="url" id="url-input" class="input" placeholder="https://ejemplo.com/mascota.jpg">
+        </div>
+
+        <section id="preview-card" class="preview hidden" aria-live="polite">
+            <div class="preview-head">
+                <h2>Vista previa</h2>
+                <button id="clear-preview" class="clear-btn" type="button" title="Quitar imagen">×</button>
+            </div>
+            <div class="preview-frame">
+                <img id="preview-image" alt="Vista previa de imagen">
+            </div>
+        </section>
+
+        <button id="btn-classify" class="primary" type="button">? Clasificar Animal</button>
+        <p id="error-message" class="error"></p>
+    </section>
+
+    <section class="card result hidden" id="result-card">
+        <div class="result-head">
+            <h2>Resultado</h2>
+            <span class="badge"><span id="out-time">0</span> ms</span>
+        </div>
+
+        <div class="main-result">
+            <div class="paw">??</div>
+            <div class="main-data">
+                <h3 id="out-breed">-</h3>
+                <div class="meter-wrap">
+                    <div class="meter"><div class="meter-fill" id="main-fill"></div></div>
+                    <strong id="out-prob">0%</strong>
+                </div>
+                <p class="model">Modelo: <span id="out-model">-</span></p>
+            </div>
+        </div>
+
+        <h4>Top 5 predicciones</h4>
+        <ol id="out-top5" class="top5"></ol>
+    </section>
+</main>
+<script src="/static/js/app.js?v=3"></script>
+</body>
+</html>
+
+
+
